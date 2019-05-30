@@ -1,0 +1,78 @@
+<mvc:View controllerName="openSap.movies.controller.Detail" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core" xmlns="sap.m">
+	<App>
+		<pages>
+			<Page
+				title="{movies>cinemaName} - { path: 'movies>startDate', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'MM/dd/yyyy/hh:mm:ss' }, relative: true, relativeScale: 'auto' } }"
+				showNavButton="true" class="sapUiResponsiveContentPadding" navButtonPress=".onNavBack">
+				<content>
+					<FlexBox wrap="Wrap">
+						<l:VerticalLayout id="generalDetails" class="sapUiMediumMarginEnd sapUiSmallMarginBottom">
+							<core:Icon src="{movies>icon}" size="3rem" class="sapUiMediumMarginBottom"/>
+							<Label text="{i18n>cinemaAddress}" design="Bold"/>
+							<Text text="{movies>cinemaAddress}" class="sapUiMediumMarginBottom"/>
+							<Label text="{i18n>special}" design="Bold"/>
+							<Text text="{movies>special}" class="sapUiMediumMarginBottom"/>
+							<Label text="{i18n>seats}" design="Bold"/>
+							<Text text="{movies>seats}" class="sapUiMediumMarginBottom"/>
+							<Label text="{i18n>technicalDetails}" design="Bold"/>
+							<Text text="{movies>technicalDetails}" width="400px"/>
+						</l:VerticalLayout>
+						<Image width="100%" src="{movies>pic}"/>
+					</FlexBox>
+					<VBox class="sapUiSmallMargin" id="formContainer">
+						<f:SimpleForm id="SimpleFormChangeColumn_twoGroups234" editable="true" layout="ColumnLayout" title="Order ticket" columnsM="2" columnsL="2"
+							columnsXL="2">
+							<f:content>
+								<core:Title text="Information"/>
+								<Label text="Name"/>
+								<Input change="onChange" value="{ path : 'name', type : 'sap.ui.model.type.String' }"/>
+								<Label text="Street/No."/>
+								<Input value="{street/name}"></Input>
+								<Input value="{street/number}">
+									<layoutData>
+										<f:ColumnElementData cellsSmall="2" cellsLarge="2"/>
+									</layoutData>
+								</Input>
+								<Label text="ZIP Code/City"/>
+								<Input value="{ path : 'zip/code', type : 'sap.ui.model.type.Integer'}">
+									<layoutData>
+										<f:ColumnElementData cellsSmall="3" cellsLarge="2"/>
+									</layoutData>
+								</Input>
+								<Input value="{zip/city}"/>
+								<Label text="Country"/>
+								<Select id="country" selectedKey="{country}">
+									<items>
+										<core:Item text="England" key="England"/>
+										<core:Item text="Germany" key="Germany"/>
+										<core:Item text="USA" key="USA"/>
+									</items>
+								</Select>
+								<core:Title text="Contact"/>
+								<Label text="Email"/>
+								<Input value="{ path : 'email', type : 'sap.ui.model.type.String', constraints: { search: '^\\w+[\\w-+\\.]*\\@[a-zA-Z]+.[a-zA-Z]+' } }"/>
+								<Label text="Phone Number"/>
+								<Input value="{phone/number}"></Input>
+								<Input value="{phone/time}">
+									<layoutData>
+										<f:ColumnElementData cellsSmall="2" cellsLarge="2"/>
+									</layoutData>
+								</Input>
+								<Label text="Personal website"/>
+								<Input value="{website}"/>
+							</f:content>
+						</f:SimpleForm>
+					</VBox>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button type="Emphasized" text="Submit" press=".submit"/>
+						<Button text="Cancel"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
